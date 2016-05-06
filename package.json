@@ -1,6 +1,6 @@
 {
   "name": "excel2map",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Excel2Map lets you easily create your own geographical maps directly from your spreadsheets.",
   "bin": {
     "excel2map": "lib/server.js"
