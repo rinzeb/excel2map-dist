@@ -1,0 +1,35 @@
+{
+  "name": "excel2map",
+  "version": "0.0.1",
+  "description": "Excel2Map lets you easily create your own geographical maps directly from your spreadsheets.",
+  "bin": {
+    "excel2map": "lib/server.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://www.github.com/TNOCS/excel2map"
+  },
+  "keywords": [
+    "csweb",
+    "maps",
+    "excel",
+    "gis",
+    "conversion",
+    "creator"
+  ],
+  "author": {
+    "name": "Rinze Bruining",
+    "email": "rinze.bruining@tno.nl"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "basic-auth": "^1.0.3",
+    "csweb": "github:tnocs/csWeb-dist#50268b19e01f36ee8dd5923399feb69cd14ae89d",
+    "moment": "^2.13.0",
+    "pg": "^4.5.5",
+    "winston": "^2.2.0"
+  }
+}

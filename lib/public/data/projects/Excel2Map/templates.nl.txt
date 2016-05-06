@@ -1,0 +1,9 @@
+# Templates
+### Adressen
+* <a href="data/excel2map_online_adressen.xlsm" target="_blank">Adressen voorbeeld</a>
+### Regio's
+* <a href="data/excel2map_online_regios.xlsm" target="_blank">Regio's voorbeeld</a>
+### Leeg
+* <a href="data/excel2map_online_leeg.xlsm" target="_blank">Leeg voorbeeld</a>
+
+<br>
