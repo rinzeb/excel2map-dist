@@ -27,6 +27,7 @@
   "license": "MIT",
   "dependencies": {
     "basic-auth": "^1.0.3",
+    "chokidar": "^1.4.3",
     "csweb": "github:tnocs/csWeb-dist#50268b19e01f36ee8dd5923399feb69cd14ae89d",
     "moment": "^2.13.0",
     "pg": "^4.5.5",
