@@ -2671,6 +2671,122 @@ declare module FilterList {
     }
 }
 
+declare module IdvEdit {
+    interface IIdvEditScope extends ng.IScope {
+        vm: IdvEditCtrl;
+    }
+    /**
+      * Module
+      */
+    var myModule: any;
+    class IdvEditCtrl {
+        private $scope;
+        private $mapService;
+        private $layerService;
+        private $messageBusService;
+        private scope;
+        DataLoaded: boolean;
+        eta: any;
+        incomming: any;
+        _initialized: boolean;
+        scan: Idv.Idv;
+        static $inject: string[];
+        constructor($scope: IIdvEditScope, $mapService: csComp.Services.MapService, $layerService: csComp.Services.LayerService, $messageBusService: csComp.Services.MessageBusService);
+        toggleChart(chart: Idv.ChartConfig): void;
+        update(): void;
+        reset(): void;
+    }
+}
+
+declare module Idv {
+    interface ChartConfig {
+        id?: string;
+        enabled?: boolean;
+        elementId?: string;
+        containerId?: string;
+        title?: string;
+        bins?: number;
+        type?: string;
+        property?: string;
+        properties?: string[];
+        secondProperty?: string;
+        dimension?: any;
+        columns?: string[];
+        group?: any;
+        stat?: string;
+        width?: number;
+        height?: number;
+        chart?: any;
+        cap?: number;
+        time?: string;
+        ordering?: string;
+        propertyTitle?: string;
+        secondPropertyTitle?: string;
+        record?: string;
+        layer?: string;
+        featureProperty?: string;
+        featureTargetProperty?: string;
+        filtered?: Function;
+        _view: any;
+        xaxis?: string;
+        yaxis?: string;
+    }
+    interface ScanConfig {
+        title?: string;
+        containerId?: string;
+        config?: string;
+        data?: string;
+        localStorage?: boolean;
+        refreshTimer?: number;
+        charts?: ChartConfig[];
+    }
+    class Idv {
+        static days: string[];
+        static months: string[];
+        config: ScanConfig;
+        ndx: CrossFilter.CrossFilter<any>;
+        gridster: any;
+        data: any;
+        state: string;
+        layerService: csComp.Services.LayerService;
+        storage: ng.localStorage.ILocalStorageService;
+        defaultWidth: number;
+        DataLoaded: boolean;
+        private scope;
+        reduceAddSum(properties: string[]): (p: any, v: any) => any;
+        reduceRemoveSum(properties: string[]): (p: any, v: any) => any;
+        reduceInitSum(properties: string[]): {};
+        reduceAddAvg(attr: any): (p: any, v: any) => any;
+        reduceRemoveAvg(attr: any): (p: any, v: any) => any;
+        reduceInitAvg(): {
+            count: number;
+            sum: number;
+            avg: number;
+            max: number;
+        };
+        stop(): void;
+        updateCharts(): void;
+        enums: {
+            [key: string]: string[];
+        };
+        loadDataSource(done: Function): void;
+        private resize();
+        loadData(prepare: any, done: any): void;
+        initCharts(scope: ng.IScope, layerService: csComp.Services.LayerService, prepare: any, done: any): void;
+        parseData(data: any, prepare: any, done: any): void;
+        reset(id: any): void;
+        resetAll(): void;
+        hasFilter(id: any): boolean;
+        private addSearchWidget(config);
+        addSumCompare(config: Idv.ChartConfig): void;
+        addLayerLink(config: Idv.ChartConfig): void;
+        private addChartItem(config);
+        private triggerFilter(config);
+        private createGridsterItem(config);
+        addChart(config: Idv.ChartConfig): void;
+    }
+}
+
 declare module Heatmap {
     /**
      * Module
@@ -2984,122 +3100,6 @@ declare module Heatmap {
         lostInterestDistance: number;
         constructor(idealDistance?: number, atLocation?: number, lostInterestDistance?: number);
         computeIdealityAtDistance(distance: number): number;
-    }
-}
-
-declare module IdvEdit {
-    interface IIdvEditScope extends ng.IScope {
-        vm: IdvEditCtrl;
-    }
-    /**
-      * Module
-      */
-    var myModule: any;
-    class IdvEditCtrl {
-        private $scope;
-        private $mapService;
-        private $layerService;
-        private $messageBusService;
-        private scope;
-        DataLoaded: boolean;
-        eta: any;
-        incomming: any;
-        _initialized: boolean;
-        scan: Idv.Idv;
-        static $inject: string[];
-        constructor($scope: IIdvEditScope, $mapService: csComp.Services.MapService, $layerService: csComp.Services.LayerService, $messageBusService: csComp.Services.MessageBusService);
-        toggleChart(chart: Idv.ChartConfig): void;
-        update(): void;
-        reset(): void;
-    }
-}
-
-declare module Idv {
-    interface ChartConfig {
-        id?: string;
-        enabled?: boolean;
-        elementId?: string;
-        containerId?: string;
-        title?: string;
-        bins?: number;
-        type?: string;
-        property?: string;
-        properties?: string[];
-        secondProperty?: string;
-        dimension?: any;
-        columns?: string[];
-        group?: any;
-        stat?: string;
-        width?: number;
-        height?: number;
-        chart?: any;
-        cap?: number;
-        time?: string;
-        ordering?: string;
-        propertyTitle?: string;
-        secondPropertyTitle?: string;
-        record?: string;
-        layer?: string;
-        featureProperty?: string;
-        featureTargetProperty?: string;
-        filtered?: Function;
-        _view: any;
-        xaxis?: string;
-        yaxis?: string;
-    }
-    interface ScanConfig {
-        title?: string;
-        containerId?: string;
-        config?: string;
-        data?: string;
-        localStorage?: boolean;
-        refreshTimer?: number;
-        charts?: ChartConfig[];
-    }
-    class Idv {
-        static days: string[];
-        static months: string[];
-        config: ScanConfig;
-        ndx: CrossFilter.CrossFilter<any>;
-        gridster: any;
-        data: any;
-        state: string;
-        layerService: csComp.Services.LayerService;
-        storage: ng.localStorage.ILocalStorageService;
-        defaultWidth: number;
-        DataLoaded: boolean;
-        private scope;
-        reduceAddSum(properties: string[]): (p: any, v: any) => any;
-        reduceRemoveSum(properties: string[]): (p: any, v: any) => any;
-        reduceInitSum(properties: string[]): {};
-        reduceAddAvg(attr: any): (p: any, v: any) => any;
-        reduceRemoveAvg(attr: any): (p: any, v: any) => any;
-        reduceInitAvg(): {
-            count: number;
-            sum: number;
-            avg: number;
-            max: number;
-        };
-        stop(): void;
-        updateCharts(): void;
-        enums: {
-            [key: string]: string[];
-        };
-        loadDataSource(done: Function): void;
-        private resize();
-        loadData(prepare: any, done: any): void;
-        initCharts(scope: ng.IScope, layerService: csComp.Services.LayerService, prepare: any, done: any): void;
-        parseData(data: any, prepare: any, done: any): void;
-        reset(id: any): void;
-        resetAll(): void;
-        hasFilter(id: any): boolean;
-        private addSearchWidget(config);
-        addSumCompare(config: Idv.ChartConfig): void;
-        addLayerLink(config: Idv.ChartConfig): void;
-        private addChartItem(config);
-        private triggerFilter(config);
-        private createGridsterItem(config);
-        addChart(config: Idv.ChartConfig): void;
     }
 }
 
@@ -3528,6 +3528,30 @@ declare module MapElement {
     }
 }
 
+declare module Mobile {
+    /**
+      * Module
+      */
+    var myModule: any;
+}
+
+declare module Mobile {
+    interface IMobileScope extends ng.IScope {
+        vm: MobileCtrl;
+    }
+    class MobileCtrl {
+        private $scope;
+        private $layerService;
+        private $messageBus;
+        private localStorageService;
+        private geoService;
+        private scope;
+        private availableLayers;
+        static $inject: string[];
+        constructor($scope: IMobileScope, $layerService: csComp.Services.LayerService, $messageBus: csComp.Services.MessageBusService, localStorageService: ng.localStorage.ILocalStorageService, geoService: csComp.Services.GeoService);
+    }
+}
+
 declare module Mca.Models {
     import IFeature = csComp.Services.IFeature;
     enum ScoringFunctionType {
@@ -3757,30 +3781,6 @@ declare module Mca {
         save(): void;
         cancel(): void;
         toggleItemDetails(index: number): void;
-    }
-}
-
-declare module Mobile {
-    /**
-      * Module
-      */
-    var myModule: any;
-}
-
-declare module Mobile {
-    interface IMobileScope extends ng.IScope {
-        vm: MobileCtrl;
-    }
-    class MobileCtrl {
-        private $scope;
-        private $layerService;
-        private $messageBus;
-        private localStorageService;
-        private geoService;
-        private scope;
-        private availableLayers;
-        static $inject: string[];
-        constructor($scope: IMobileScope, $layerService: csComp.Services.LayerService, $messageBus: csComp.Services.MessageBusService, localStorageService: ng.localStorage.ILocalStorageService, geoService: csComp.Services.GeoService);
     }
 }
 
@@ -4308,6 +4308,13 @@ declare module Timeline {
     }
 }
 
+declare module Voting {
+    /**
+      * Module
+      */
+    var myModule: any;
+}
+
 declare module TripPlanner {
     /**
       * Module
@@ -4359,11 +4366,7 @@ declare module TripPlanner {
     }
 }
 
-declare module Voting {
-    /**
-      * Module
-      */
-    var myModule: any;
+declare module Authentication {
 }
 
 declare module csComp.Services {
@@ -4517,9 +4520,6 @@ declare module csComp.Services {
       * Module
       */
     var myModule: any;
-}
-
-declare module Authentication {
 }
 
 declare module csComp.Services {
@@ -5750,6 +5750,45 @@ declare module GroupEdit {
     }
 }
 
+declare module PropertyTypes {
+    /**
+      * Module
+      */
+    var myModule: any;
+}
+
+declare module PropertyTypes {
+    interface IPropertyTypesScope extends ng.IScope {
+        vm: PropertyTypesCtrl;
+        showMenu: boolean;
+        showMenuEdit: boolean;
+        filterProperty: any;
+        propertyTypes: any;
+        getSections: any;
+        addSection: any;
+        sections: any;
+    }
+    class PropertyTypesCtrl {
+        private $scope;
+        private $layerService;
+        private $messageBusService;
+        private scope;
+        selectedResourceUrl: string;
+        selectedResource: csComp.Services.ITypesResource;
+        static $inject: string[];
+        constructor($scope: IPropertyTypesScope, $layerService: csComp.Services.LayerService, $messageBusService: csComp.Services.MessageBusService);
+        selectResource(): void;
+        private editModeMessageReceived;
+        /**
+         * Callback function
+         * @see {http://stackoverflow.com/questions/12756423/is-there-an-alias-for-this-in-typescript}
+         * @see {http://stackoverflow.com/questions/20627138/typescript-this-scoping-issue-when-called-in-jquery-callback}
+         * @todo {notice the strange syntax using a fat arrow =>, which is to preserve the this reference in a callback!}
+         */
+        private sidebarMessageReceived;
+    }
+}
+
 declare module LayerEdit {
     /**
       * Module
@@ -5844,45 +5883,6 @@ declare module LayerSettings {
         removeLayer(): void;
         addFeatureType(): void;
         getTypes(): void;
-    }
-}
-
-declare module PropertyTypes {
-    /**
-      * Module
-      */
-    var myModule: any;
-}
-
-declare module PropertyTypes {
-    interface IPropertyTypesScope extends ng.IScope {
-        vm: PropertyTypesCtrl;
-        showMenu: boolean;
-        showMenuEdit: boolean;
-        filterProperty: any;
-        propertyTypes: any;
-        getSections: any;
-        addSection: any;
-        sections: any;
-    }
-    class PropertyTypesCtrl {
-        private $scope;
-        private $layerService;
-        private $messageBusService;
-        private scope;
-        selectedResourceUrl: string;
-        selectedResource: csComp.Services.ITypesResource;
-        static $inject: string[];
-        constructor($scope: IPropertyTypesScope, $layerService: csComp.Services.LayerService, $messageBusService: csComp.Services.MessageBusService);
-        selectResource(): void;
-        private editModeMessageReceived;
-        /**
-         * Callback function
-         * @see {http://stackoverflow.com/questions/12756423/is-there-an-alias-for-this-in-typescript}
-         * @see {http://stackoverflow.com/questions/20627138/typescript-this-scoping-issue-when-called-in-jquery-callback}
-         * @todo {notice the strange syntax using a fat arrow =>, which is to preserve the this reference in a callback!}
-         */
-        private sidebarMessageReceived;
     }
 }
 
