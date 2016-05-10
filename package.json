@@ -28,8 +28,9 @@
   "dependencies": {
     "basic-auth": "^1.0.3",
     "chokidar": "^1.4.3",
-    "csweb": "github:tnocs/csWeb-dist#v0.3.3",
+    "csweb": "github:tnocs/csWeb-dist#2b98f4dcc4e8fd55fb3a8dceb1a39d9ec3e17e7b",
     "moment": "^2.13.0",
+    "opn": "^4.0.1",
     "pg": "^4.5.5",
     "winston": "^2.2.0"
   }
