@@ -1,6 +1,6 @@
 {
   "name": "excel2map",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Excel2Map lets you easily create your own geographical maps directly from your spreadsheets.",
   "bin": {
     "excel2map": "lib/server.js"
@@ -26,12 +26,12 @@
   },
   "license": "MIT",
   "dependencies": {
-    "basic-auth": "^1.0.3",
-    "chokidar": "^1.4.3",
-    "csweb": "github:tnocs/csWeb-dist#2b98f4dcc4e8fd55fb3a8dceb1a39d9ec3e17e7b",
-    "moment": "^2.13.0",
-    "opn": "^4.0.1",
-    "pg": "^4.5.5",
+    "basic-auth": "^1.0.4",
+    "chokidar": "^1.6.0",
+    "csweb": "github:tnocs/csWeb-dist#c331636812834cdb2dcb5fa705ba3ef554be0939",
+    "moment": "^2.14.1",
+    "opn": "^4.0.2",
+    "pg": "^4.5.6",
     "winston": "^2.2.0"
   }
 }

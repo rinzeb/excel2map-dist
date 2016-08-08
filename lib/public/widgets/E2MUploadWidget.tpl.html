@@ -1,0 +1,68 @@
+<div class="fill-height" style="margin: 20px 5px 2px 5px;overflow:auto;height:95%" id="drop-box">
+    <div style="display: inline-block; margin-left: 2px;" ng-hide="data.hideTitle">
+        <div style="display: inline-block; font-size:16px; font-weight:bold; margin-bottom:2px;">{{data.title}}</div>
+        <div style="display: inline-block; margin-right:5px; position: absolute; top: 2px; right: 0px;">
+            <a class="widget-min-max-close" ng-click="vm.close()" ng-if="vm.canClose()"><i class="fa fa-times"></i></a>
+            <a class="widget-min-max-close" ng-click="vm.minimize()" ng-show="vm.canMinimize() && minimized"> <i class="fa fa-plus"></i></a>
+            <a class="widget-min-max-close" ng-click="vm.minimize()" ng-show="vm.canMinimize() && !minimized"> <i class="fa fa-minus"></i></a>
+            <a class="widget-min-max-close" ng-click="vm.exportToPDF()"><i class="fa fa-save" uib-tooltip="{{'SAVE_AS_PDF' | translate}}" tooltip-trigger="mouseenter" tooltip-append-to-body="true" ng-show="vm.exporterAvailable&&!minimized"></i></a>
+        </div>
+        <!--<div class="display:inline-block; margin-right:10px; btn-group btn-group-sm" role="group">
+            <a ng-click="vm.minimize()">
+                <i class="makeNarrow fa fa-plus"></i>
+            </a>
+            <button type="button" class="btn btn-secondary makeNarrow fa fa-plus leftpanel-header-button" ng-click="vm.minimize()" ng-show="minimized" />
+            <button type="button" class="btn btn-secondary makeNarrow fa fa-minus leftpanel-header-button" ng-click="vm.minimize()" ng-hide="minimized" />
+            <button type="button" class="btn btn-secondary makeNarrow fa fa-times leftpanel-header-button" ng-if="vm.canClose()" ng-click="vm.close()" />
+        </div>-->
+    </div>
+    <div class="fill-height" style="padding:0px;font-size:12px;margin:0px;" ng-hide="minimized">
+        <div class="table fill-height">
+            <div class="row">
+                <div class="col-xs-12 fill-height">
+                    <h2>{{'UPLOAD_FROM_EXCEL2MAP' | translate}}</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 fill-height">
+                    <div>{{'UPLOAD_DESCRIPTION' | translate}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 fill-height">
+                    <h4>{{'OPTION' | translate:'{ number: "1" }'}}. {{ 'PASTE_CLIPBOARD' | translate}}.</h4>
+                    <div>{{ 'PASTE_CLIPBOARD_DESCRIPTION' | translate}}</div>
+                    <h4>{{'OPTION' | translate:'{ number: "2" }'}}. {{ 'UPLOAD_FILE' | translate}}.</h4>
+                    <div>{{ 'UPLOAD_FILE_DESCRIPTION' | translate}}</div>
+                    <input type="file" id="file-upload" style="margin-top:8px"/>
+                    <h4>{{'OPTION' | translate:'{ number: "3" }'}}. {{ 'DRAG_FILE' | translate}}.</h4>
+                    <div>{{ 'DRAG_FILE_DESCRIPTION' | translate}}.</div>
+                </div>
+                <div class="col-xs-6 fill-height">
+                    <textarea rows="16" class="fill-height" id="clipboard-box" style="width:95%;margin-top: 24px" placeholder="{{'PASTE_HERE' | translate}}" ng-model="vm.textContent" 
+                        ng-change="vm.updatedContent()"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 fill-height">
+                    <div style="margin-top: 8px">
+                        <label for="projectid">Project ID:</label>
+                        <input type="text" class="fill-height" id="projectid" ng-model="vm.projectId">
+                    </div>
+                    <div>
+                        <label for="password">{{'PASSWORD' | translate}}:</label>
+                        <input type="text" class="fill-height" id="password" ng-model="vm.password">
+                    </div>
+                    <div>
+                        <input class="btn big-button" type="button" value="{{'CONVERT' | translate}}" ng-click="vm.convertData()" ng-disabled="!vm.textContent"
+                        />
+                    </div>
+                    <div ng-hide="!vm.projectId">
+                        <a class="btn" target="_blank" href="/?project={{vm.projectId}}" style="font-size:large">{{'VIEW_PROJECT' | translate}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
